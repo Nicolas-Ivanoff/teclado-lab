@@ -1,0 +1,20 @@
+<ion-item lines="none">
+  <ion-input
+    labelPlacement="floating"
+    type="tel"
+    autocomplete="off"
+    autocorrect="off"
+    [label]="rotulo()"
+    [formControl]="controle()"
+    [maskito]="mascara"
+    [maskitoElement]="elementoInput"
+    [errorText]="textoErro()"
+  >
+    <ion-icon
+      slot="end"
+      name="calendar-outline"
+      data-testid="icon-calendario"
+      (pointerdown)="abrirDatepicker($event)"
+    />
+  </ion-input>
+</ion-item>

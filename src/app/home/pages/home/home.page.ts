@@ -9,8 +9,8 @@ import {
 } from '@ionic/angular/standalone';
 import {
   getModoTecladoAtual,
-  ROTA_FORM_CAPACITOR,
-  ROTA_FORM_SERVICO,
+  ModoTecladoEnum,
+  ROTA_POR_MODO,
 } from 'src/core/constants/modo-teclado.constants';
 import { TEXTOS } from 'src/core/constants/textos.constants';
 
@@ -26,20 +26,11 @@ export class HomePage {
   protected readonly textos = TEXTOS.home;
   protected readonly plataforma = Capacitor.getPlatform();
   protected readonly modoAtivo = getModoTecladoAtual();
+  protected readonly modos = Object.values(ModoTecladoEnum);
 
-  protected abrirFormularioServico(): void {
-    this._recarregarEm(ROTA_FORM_SERVICO);
-  }
-
-  protected abrirFormularioCapacitor(): void {
-    this._recarregarEm(ROTA_FORM_CAPACITOR);
-  }
-
-  /**
-   * Recarregamento completo: o modo do teclado e decidido no bootstrap e o
-   * KeyboardScrollService nao consegue ser desligado depois do init().
-   */
-  private _recarregarEm(rota: string): void {
-    window.location.assign(`/${rota}`);
+  protected abrirFormulario(modo: ModoTecladoEnum): void {
+    // Recarregamento completo: o modo do teclado e decidido no bootstrap e o
+    // KeyboardScrollService nao consegue ser desligado depois do init().
+    window.location.assign(`/${ROTA_POR_MODO[modo]}`);
   }
 }

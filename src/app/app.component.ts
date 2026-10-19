@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
-import { Keyboard, KeyboardResize } from '@capacitor/keyboard';
+import { Keyboard } from '@capacitor/keyboard';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import {
   IonApp,
@@ -9,8 +9,9 @@ import {
 } from '@ionic/angular/standalone';
 import { DebugViewportComponent } from 'src/core/components/debug-viewport/debug-viewport.component';
 import {
+  ehModoServico,
   getModoTecladoAtual,
-  ModoTecladoEnum,
+  RESIZE_POR_MODO,
 } from 'src/core/constants/modo-teclado.constants';
 import { KeyboardScrollService } from 'src/core/services/keyboard/keyboard-scroll.service';
 
@@ -55,11 +56,13 @@ export class AppComponent {
   }
 
   private _configurarTeclado(): void {
-    if (getModoTecladoAtual() === ModoTecladoEnum.SERVICO) {
+    const modo = getModoTecladoAtual();
+
+    if (ehModoServico(modo)) {
       this._keyboardScrollService.init();
       return;
     }
 
-    Keyboard.setResizeMode({ mode: KeyboardResize.Native }).then();
+    Keyboard.setResizeMode({ mode: RESIZE_POR_MODO[modo] }).then();
   }
 }

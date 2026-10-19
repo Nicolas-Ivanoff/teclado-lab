@@ -8,23 +8,17 @@
   <div class="home">
     <p class="home__descricao">{{ textos.descricao }}</p>
 
-    <ion-button
-      expand="block"
-      shape="round"
-      class="button-default"
-      (click)="abrirFormularioServico()"
-    >
-      {{ textos.botaoServico }}
-    </ion-button>
-
-    <ion-button
-      expand="block"
-      shape="round"
-      class="button-default"
-      (click)="abrirFormularioCapacitor()"
-    >
-      {{ textos.botaoCapacitor }}
-    </ion-button>
+    @for (modo of modos; track modo) {
+      <ion-button
+        expand="block"
+        shape="round"
+        class="button-default"
+        [attr.data-testid]="'button-' + modo"
+        (click)="abrirFormulario(modo)"
+      >
+        {{ textos.botaoPorModo[modo] }}
+      </ion-button>
+    }
 
     <p class="home__info">{{ textos.plataforma }}: {{ plataforma }}</p>
     <p class="home__info">{{ textos.modoAtivo }}: {{ modoAtivo }}</p>

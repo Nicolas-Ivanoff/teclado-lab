@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelar()">{{ textos.cancelar }}</ion-button>
+    </ion-buttons>
+    <ion-title>{{ textos.titulo }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmar()">{{ textos.confirmar }}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-datetime
+    presentation="date"
+    locale="pt-BR"
+    [value]="dataInicial || null"
+    [max]="dataMaxima"
+    (ionChange)="onDataAlterada($event)"
+  />
+</ion-content>

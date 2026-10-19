@@ -14,6 +14,11 @@
     [rotulo]="textos.campos.sobrenome"
     [textoErro]="textos.campoObrigatorio"
   />
+  <app-input-data
+    [controle]="formulario().controls.dataNascimento"
+    [rotulo]="textos.campos.dataNascimento"
+    [textoErro]="textos.dataInvalida"
+  />
   <app-input
     [controle]="formulario().controls.email"
     [rotulo]="textos.campos.email"

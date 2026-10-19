@@ -6,22 +6,32 @@ sem Firebase, push, edge-to-edge, swiper, splash manual, i18n nem backend.
 
 ## Telas
 
+Cada modo do `KeyboardResize` do plugin `@capacitor/keyboard` tem a sua tela, mais a tela do nosso serviço:
+
 | Rota | Tratamento do teclado |
 |---|---|
-| `/home` | Dois botões. Cada um recarrega o app no modo escolhido. |
+| `/home` | Cinco botões. Cada um recarrega o app no modo escolhido. |
 | `/form-servico` | **Nosso serviço**: `KeyboardScrollService` (cópia literal do e-commerce) com `KeyboardResize.None`, spacer `--keyboard-safe-area` e scroll manual. `scrollAssist`/`scrollPadding` do Ionic **desligados** (igual ao `main.ts` do e-commerce). |
-| `/form-capacitor` | **Capacitor/Ionic**: `Keyboard.setResizeMode(Native)` em runtime e `scrollAssist`/`scrollPadding` do Ionic **ligados**. O serviço não é iniciado. |
+| `/form-none` | Só Capacitor, `KeyboardResize.None`: nada encolhe, o teclado cobre o rodapé. |
+| `/form-body` | Só Capacitor, `KeyboardResize.Body`: só o `<body>` encolhe. |
+| `/form-ionic` | Só Capacitor, `KeyboardResize.Ionic`: só o `<ion-app>` encolhe. |
+| `/form-native` | Só Capacitor, `KeyboardResize.Native`: o WebView inteiro encolhe (muda o `vh`). |
 
-As duas telas usam o **mesmo** componente de formulário (`FormularioExemploComponent`, 10 campos + botão no rodape
-via `app-layout-rounded-button-footer`, mesmo mixin `ft-keyboard-spacer` do e-commerce). Só muda o teclado.
+Nas quatro telas só Capacitor o serviço **não é iniciado**, o resize é definido em runtime com `Keyboard.setResizeMode(...)`
+(mapa `RESIZE_POR_MODO` em `src/core/constants/modo-teclado.constants.ts`) e o `scrollAssist`/`scrollPadding` do Ionic ficam **ligados**.
+A página das quatro é a mesma (`FormCapacitorPage`); só muda a rota.
+
+As cinco telas usam o **mesmo** componente de formulário (`FormularioExemploComponent`): 11 campos, incluindo um campo de
+**data** (`app-input-data`, no formato do `ft-input-data` do e-commerce: `ion-input type="tel"` com máscara dd/mm/aaaa via Maskito
+e ícone de calendário que abre um `ion-datetime` em modal), e o botão no rodapé via `app-layout-rounded-button-footer`
+(mesmo mixin `ft-keyboard-spacer` do e-commerce). Só muda o tratamento do teclado.
 
 ### Por que cada tela recarrega o app
 
 O `KeyboardScrollService.init()` registra listeners globais (`focusin`, `keyboardWillShow`, ...) que só são removidos
-no `DestroyRef` de um service `root`, ou seja, nunca. Para a tela "Capacitor" rodar sem interferência, o modo é decidido
-pela URL **antes do bootstrap** (`getModoTecladoAtual()` em `src/core/constants/modo-teclado.constants.ts`), por isso os
-botões da home fazem `window.location.assign(...)`. O voltar do header volta para a home sem recarregar, mas a home
-sempre recarrega ao escolher um modo.
+no `DestroyRef` de um service `root`, ou seja, nunca, e o `scrollAssist` do Ionic é lido uma única vez no boot. Para cada tela rodar sem
+interferência das outras, o modo é decidido pela URL **antes do bootstrap** (`getModoTecladoAtual()`), por isso os botões da home
+fazem `window.location.assign(...)`. O voltar do header volta para a home sem recarregar, mas a home sempre recarrega ao escolher um modo.
 
 ### Barra de diagnóstico
 

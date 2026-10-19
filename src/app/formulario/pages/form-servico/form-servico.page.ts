@@ -9,6 +9,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FormularioExemploComponent } from 'src/app/formulario/components/formulario-exemplo/formulario-exemplo.component';
 import { criarFormularioExemplo } from 'src/app/formulario/helpers/criar-formulario-exemplo';
+import { ModoTecladoEnum } from 'src/core/constants/modo-teclado.constants';
 import { TEXTOS } from 'src/core/constants/textos.constants';
 
 /**
@@ -32,6 +33,8 @@ import { TEXTOS } from 'src/core/constants/textos.constants';
 })
 export class FormServicoPage {
   protected readonly textos = TEXTOS.formulario;
+  protected readonly titulo =
+    TEXTOS.formulario.tituloPorModo[ModoTecladoEnum.SERVICO];
   protected readonly formulario = criarFormularioExemplo();
 
   protected onBotaoClicado(): void {

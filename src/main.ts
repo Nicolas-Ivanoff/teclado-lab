@@ -8,14 +8,13 @@ import {
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import {
+  ehModoServico,
   getModoTecladoAtual,
-  ModoTecladoEnum,
 } from './core/constants/modo-teclado.constants';
 
 // No modo "servico" o scrollAssist/scrollPadding do Ionic ficam desligados (igual ao e-commerce),
-// porque o KeyboardScrollService cuida do scroll. No modo "capacitor" ficam ligados.
-const usarScrollAssistDoIonic =
-  getModoTecladoAtual() === ModoTecladoEnum.CAPACITOR;
+// porque o KeyboardScrollService cuida do scroll. Nos modos "so Capacitor" ficam ligados.
+const usarScrollAssistDoIonic = !ehModoServico(getModoTecladoAtual());
 
 bootstrapApplication(AppComponent, {
   providers: [

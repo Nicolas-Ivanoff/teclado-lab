@@ -5,6 +5,7 @@ import {
   output,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { InputDataComponent } from 'src/core/components/input-data/input-data.component';
 import { InputComponent } from 'src/core/components/input/input.component';
 import { LayoutRoundedButtonFooterComponent } from 'src/core/components/layout-rounded-button-footer/layout-rounded-button-footer.component';
 import { TEXTOS } from 'src/core/constants/textos.constants';
@@ -12,6 +13,7 @@ import { TEXTOS } from 'src/core/constants/textos.constants';
 export interface FormularioExemploModel {
   nome: FormControl<string>;
   sobrenome: FormControl<string>;
+  dataNascimento: FormControl<string>;
   email: FormControl<string>;
   telefone: FormControl<string>;
   cep: FormControl<string>;
@@ -29,7 +31,11 @@ export interface FormularioExemploModel {
 @Component({
   selector: 'app-formulario-exemplo',
   standalone: true,
-  imports: [InputComponent, LayoutRoundedButtonFooterComponent],
+  imports: [
+    InputComponent,
+    InputDataComponent,
+    LayoutRoundedButtonFooterComponent,
+  ],
   templateUrl: './formulario-exemplo.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

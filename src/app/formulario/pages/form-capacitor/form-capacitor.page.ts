@@ -9,11 +9,13 @@ import {
 } from '@ionic/angular/standalone';
 import { FormularioExemploComponent } from 'src/app/formulario/components/formulario-exemplo/formulario-exemplo.component';
 import { criarFormularioExemplo } from 'src/app/formulario/helpers/criar-formulario-exemplo';
+import { getModoTecladoAtual } from 'src/core/constants/modo-teclado.constants';
 import { TEXTOS } from 'src/core/constants/textos.constants';
 
 /**
- * Tratamento de teclado pelo Capacitor/Ionic: KeyboardResize.Native (definido no AppComponent)
- * e scrollAssist/scrollPadding do Ionic ligados (main.ts). O KeyboardScrollService nao e iniciado.
+ * Tratamento de teclado so pelo Capacitor/Ionic: o KeyboardResize do modo da URL
+ * (None, Body, Ionic ou Native) e definido no AppComponent e o scrollAssist/scrollPadding do Ionic
+ * ficam ligados (main.ts). O KeyboardScrollService nao e iniciado.
  */
 @Component({
   selector: 'app-form-capacitor',
@@ -32,6 +34,8 @@ import { TEXTOS } from 'src/core/constants/textos.constants';
 })
 export class FormCapacitorPage {
   protected readonly textos = TEXTOS.formulario;
+  protected readonly titulo =
+    TEXTOS.formulario.tituloPorModo[getModoTecladoAtual()];
   protected readonly formulario = criarFormularioExemplo();
 
   protected onBotaoClicado(): void {
