@@ -1,0 +1,50 @@
+// Subconjunto dos mixins do e-commerce (src/theme/forma/_mixins.scss), copiados sem alteracao.
+
+@mixin ft-gap-primario {
+  gap: var(--ft-gap-checkout, 16px) !important;
+}
+
+@mixin ft-padding-body-primario {
+  padding: var(--ft-padding-checkout, 16px) var(--ft-padding-checkout, 16px) 0 !important;
+}
+
+@mixin ft-layout-host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+@mixin ft-body-rounded($padding-bottom: 2rem) {
+  background: var(--ion-background-color);
+  border-radius: 24px 24px 0 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  @include ft-gap-primario;
+  @include ft-padding-body-primario;
+  padding-bottom: $padding-bottom;
+}
+
+@mixin ft-keyboard-spacer {
+  &::after {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
+    height: var(--keyboard-safe-area, 0px);
+  }
+}
+
+@mixin ft-body-buttons {
+  ion-button {
+    margin-top: auto;
+    flex-shrink: 0;
+    width: 100%;
+  }
+
+  ion-button + ion-button.botao-secundario {
+    margin-top: -10px;
+  }
+}

@@ -1,0 +1,26 @@
+@use '../../../theme/mixins' as *;
+
+:host {
+  @include ft-layout-host;
+}
+
+.container-pagina {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+.body {
+  @include ft-body-rounded(
+    calc(var(--ion-safe-area-bottom, 0px) + 56px + 2rem)
+  );
+  @include ft-keyboard-spacer;
+  @include ft-body-buttons;
+}
+
+// Remove o ::after inteiro (nao so zerar a altura), senao o gap:16px do flex ainda seria
+// aplicado entre o ultimo conteudo e o ::after, mesmo com altura 0.
+:host(.layout-rounded-button-footer--sem-espacador-teclado) .body::after {
+  display: none;
+}

@@ -1,0 +1,72 @@
+/* Ionic — CSS base (mesma ordem do e-commerce: src/theme/global/_vendor.scss) */
+@import '@ionic/angular/css/core.css';
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
+@import '@ionic/angular/css/display.css';
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
+
+@import './theme/theme-forma.css';
+
+/* Regras copiadas de src/theme/global/_ionic-core.scss do e-commerce */
+
+/* iOS — safe area e scroll */
+.ios {
+  ion-footer > ion-toolbar,
+  ion-tab-bar {
+    padding-bottom: var(--ion-safe-area-bottom, 0px) !important;
+  }
+
+  ion-content::part(scroll) {
+    overscroll-behavior-y: auto;
+  }
+
+  ion-content {
+    --overflow: auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto;
+    --padding-bottom: 1px;
+    --offset-bottom: 1px !important;
+  }
+}
+
+/* Background base do app */
+html,
+body,
+ion-app,
+ion-content {
+  background: var(--ion-color-primary);
+  --background: var(--ion-color-primary);
+}
+
+ion-content.layout-rounded-button-footer {
+  --overflow: auto;
+  --background: var(--forma-background-header);
+}
+
+/* Input label md — altura minima */
+.input-label-placement-floating.sc-ion-input-md-h,
+.input-label-placement-stacked.sc-ion-input-md-h {
+  min-height: 52px !important;
+}
+
+ion-input.ng-invalid.ng-touched {
+  --border-color: var(--ion-color-danger) !important;
+  --highlight-color-invalid: var(--ion-color-danger) !important;
+}
+
+.background-amarelo-forma {
+  background-color: var(--forma-background-header);
+}
+
+ion-button.button-default {
+  --background: var(--ion-color-button);
+  --color: var(--color-white);
+  font-weight: 700;
+  text-transform: none;
+}

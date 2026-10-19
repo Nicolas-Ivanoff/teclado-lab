@@ -1,0 +1,16 @@
+<div class="container-pagina background-amarelo-forma">
+  <div class="body">
+    <ng-content />
+
+    <ion-button
+      (click)="botaoClicado.emit()"
+      [disabled]="desabilitarBotao()"
+      class="button-default ion-margin-top"
+      expand="block"
+      shape="round"
+      type="submit"
+    >
+      {{ textoBotao() }}
+    </ion-button>
+  </div>
+</div>

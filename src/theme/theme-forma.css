@@ -1,0 +1,24 @@
+:root {
+  --color-amarelo-forma: #ffe234;
+  --color-laranja-forma: #e58c1a;
+  --color-background: #f4f5f8;
+  --color-white: #ffffff;
+  --color-dark: #2a2e35;
+  --color-cinza-medio: #777777;
+  --color-cinza-leve: #b1b1b1;
+
+  --ion-font-family: -apple-system, 'Mulish', sans-serif;
+  --ion-text-color: var(--color-dark);
+  --ion-background-color: var(--color-background);
+  --ion-placeholder-color: var(--color-cinza-leve);
+  --ion-color-primary: var(--color-amarelo-forma);
+  --ion-color-primary-rgb: 255, 226, 52;
+  --ion-color-primary-contrast: var(--color-dark);
+  --ion-color-primary-contrast-rgb: 42, 46, 53;
+  --ion-color-primary-shade: var(--color-amarelo-forma);
+  --ion-color-primary-tint: var(--color-amarelo-forma);
+  --ion-color-danger: var(--color-laranja-forma);
+  --ion-color-button: var(--color-laranja-forma);
+  --ion-text-color-secondary: var(--color-cinza-medio);
+  --forma-background-header: var(--color-amarelo-forma);
+}

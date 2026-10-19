@@ -1,0 +1,19 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
+  padding: 24px 16px;
+  background: var(--ion-background-color);
+  border-radius: 24px 24px 0 0;
+
+  &__descricao {
+    margin: 0;
+    color: var(--ion-text-color);
+  }
+
+  &__info {
+    margin: 0;
+    color: var(--ion-text-color-secondary);
+  }
+}
